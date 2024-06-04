@@ -43,22 +43,27 @@ dependencies:
   another_flutter_splash_screen: ^1.2.0
   flutter_svg: ^2.0.10+1
   flutter_spinkit: ^5.2.0
-
+  get: ^4.6.6
+  dio: ^5.4.3+1
+  either_dart: ^1.0.0
+  retrofit: ^4.1.0
+  logger_flutter:
+    git:
+      url: https://github.com/jtans/logger_flutter.git
+      ref: master
+  intl: ^0.19.0
+      
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.4.7
   go_router_builder: any
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^2.0.0
   freezed: ^2.4.7
   json_serializable: ^6.7.1
   flutter_gen_runner:
+  retrofit_generator: ">=7.0.0 <8.0.0"
+  build_verify: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

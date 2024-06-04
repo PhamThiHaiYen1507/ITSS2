@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:translate_app/routes/routes.dart';
+import 'package:get/get.dart';
+import 'package:translate_app/layers/presentation/screens/favorite_screen/favorite_screen.dart';
 import 'package:translate_app/styles/app_theme.dart';
 
 class App extends StatelessWidget {
@@ -7,9 +8,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: Routes.routes,
+    return GetMaterialApp(
       theme: AppThemes.lightTheme,
+      home: const FavoriteScreen(),
     );
   }
 }

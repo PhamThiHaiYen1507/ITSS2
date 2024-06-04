@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppThemes {
-  static const Color primaryColor = Color(0xffFF7E07);
+  static const Color primaryColor = Color(0xff4B164C);
   static const Color greyColor = Color(0xff9D9D9D);
   static const Color background = Color(0xffF4F4F4);
 
@@ -21,8 +21,8 @@ class AppThemes {
     colorScheme: ColorScheme.fromSwatch().copyWith(
       primary: primaryColor,
       onPrimary: primaryColor,
-      background: Colors.white,
-      onBackground: Colors.white,
+      surface: Colors.white,
+      onSurface: Colors.white,
     ),
   );
 }

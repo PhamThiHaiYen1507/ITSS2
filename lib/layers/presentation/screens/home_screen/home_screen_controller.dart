@@ -6,6 +6,7 @@ class HomeScreenController extends GetxController {
   @override
   void onInit() {
     currentIndex = RxInt(0);
+
     super.onInit();
   }
 }

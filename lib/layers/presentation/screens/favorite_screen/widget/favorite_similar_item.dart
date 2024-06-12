@@ -1,6 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:translate_app/layers/domain/entities/favorite_model.dart';
-import 'package:translate_app/utils/app_logger/app_logger.dart';
 
 class FavoriteSimilarItem extends StatelessWidget {
   final FavoriteModel favoriteModel;
@@ -11,12 +11,21 @@ class FavoriteSimilarItem extends StatelessWidget {
     return Column(
       children: [
         ClipRect(
+            clipBehavior: Clip.none,
             child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12)),
-                child: Image.network(favoriteModel.url, height: 40))),
+              height: 60,
+              width: 60,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12)),
+              child: CachedNetworkImage(
+                imageUrl: favoriteModel.url,
+                fit: BoxFit.cover,
+                errorWidget: (context, url, error) =>
+                    const Icon(Icons.sports_baseball),
+              ),
+            )),
         const SizedBox(height: 8),
         Text(favoriteModel.name,
             style: const TextStyle(fontSize: 15, color: Colors.black))

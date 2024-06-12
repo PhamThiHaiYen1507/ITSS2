@@ -6,20 +6,23 @@ import 'package:translate_app/layers/presentation/screens/match_friend_screen/ma
 class _MenuInfo {
   final IconData icon;
   final String label;
-  final Widget widget;
 
-  const _MenuInfo(
-      {required this.icon, required this.label, required this.widget});
+  const _MenuInfo({required this.icon, required this.label});
 }
 
 const _menus = [
   _MenuInfo(
-      icon: Icons.add_reaction_sharp,
-      label: 'Kết bạn',
-      widget: MatchFriendScreen()),
-  _MenuInfo(icon: Icons.chat_sharp, label: 'Tin nhắn', widget: SizedBox()),
+    icon: Icons.add_reaction_sharp,
+    label: 'Kết bạn',
+  ),
   _MenuInfo(
-      icon: Icons.inventory_outlined, label: 'Lời mời', widget: SizedBox()),
+    icon: Icons.chat_sharp,
+    label: 'Tin nhắn',
+  ),
+  _MenuInfo(
+    icon: Icons.inventory_outlined,
+    label: 'Lời mời',
+  ),
 ];
 
 class HomeScreen extends StatelessWidget {
@@ -31,8 +34,9 @@ class HomeScreen extends StatelessWidget {
       init: HomeScreenController(),
       builder: (controller) {
         return Scaffold(
-          body: Obx(() => _menus[controller.currentIndex.value].widget),
+          body: Obx(() => _getBody(controller.currentIndex.value)),
           bottomNavigationBar: Obx(() => BottomNavigationBar(
+                backgroundColor: Colors.white,
                 currentIndex: controller.currentIndex.value,
                 onTap: (value) => controller.currentIndex.value = value,
                 items: _menus
@@ -47,5 +51,14 @@ class HomeScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  Widget _getBody(int index) {
+    switch (index) {
+      case 0:
+        return const MatchFriendScreen();
+      default:
+        return const SizedBox();
+    }
   }
 }

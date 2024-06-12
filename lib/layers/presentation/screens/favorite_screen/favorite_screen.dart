@@ -96,7 +96,10 @@ class FavoriteScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16, vertical: 16),
                     child: InkWell(
-                      onTap: () => Get.to(() => const HomeScreen()),
+                      onTap: () {
+                        controller.updateFavorite();
+                        Get.to(() => const HomeScreen());
+                      },
                       child: Container(
                           alignment: Alignment.center,
                           width: double.maxFinite,

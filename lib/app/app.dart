@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:translate_app/app/app_bindings.dart';
 import 'package:translate_app/layers/presentation/screens/favorite_screen/favorite_screen.dart';
 import 'package:translate_app/styles/app_theme.dart';
 
@@ -9,6 +10,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: AppBindings(),
       theme: AppThemes.lightTheme,
       home: const FavoriteScreen(),
     );

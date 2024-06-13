@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:translate_app/layers/presentation/screens/chat/chat_list/chat_list_screen.dart';
 import 'package:translate_app/layers/presentation/screens/home_screen/home_screen_controller.dart';
 import 'package:translate_app/layers/presentation/screens/match_friend_screen/match_friend_screen.dart';
+import 'package:translate_app/services/global_service.dart';
 
 class _MenuInfo {
   final IconData icon;
@@ -57,6 +59,10 @@ class HomeScreen extends StatelessWidget {
     switch (index) {
       case 0:
         return const MatchFriendScreen();
+
+      case 1:
+        return ChatListScreen(
+            currentUserId: GlobalService.instance.userIdFromServer);
       default:
         return const SizedBox();
     }

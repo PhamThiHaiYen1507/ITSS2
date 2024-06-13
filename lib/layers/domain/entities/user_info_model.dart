@@ -18,8 +18,10 @@ class UserInfoModel {
 
   final num appropriatenessPercent;
 
+  @JsonKey(defaultValue: [])
   final List<FavoriteModel> favoritesOverlap;
 
+  @JsonKey(defaultValue: [])
   final List<FavoriteModel> favoritesOther;
 
   UserInfoModel(

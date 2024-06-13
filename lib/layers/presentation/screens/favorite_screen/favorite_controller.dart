@@ -1,10 +1,8 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get/get.dart';
-import 'package:translate_app/layers/data/raw/result_data.dart';
 import 'package:translate_app/layers/data/request/favorite_request.dart';
 import 'package:translate_app/layers/domain/entities/favorite_model.dart';
 import 'package:translate_app/layers/domain/repository/favorite_repository.dart';
-import 'package:translate_app/utils/app_logger/app_logger.dart';
 
 class FavoriteController extends GetxController {
   final FavoriteRepository _favoriteRepository;
@@ -44,10 +42,9 @@ class FavoriteController extends GetxController {
     final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     final AndroidDeviceInfo androidDeviceInfo = await deviceInfo.androidInfo;
     final String deviceId = androidDeviceInfo.id;
-   final data  = await _favoriteRepository.updateFavorite(FavoriteRequest(
+    final data = await _favoriteRepository.updateFavorite(FavoriteRequest(
         userIp: deviceId,
         favoriteIds:
             favoriteListSelected.value.map((data) => data.id).toList()));
-    
   }
 }

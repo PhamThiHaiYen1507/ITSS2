@@ -6,20 +6,23 @@ part of 'user_info_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserInfoModel _$UserInfoModelFromJson(Map<String, dynamic> json) =>
-    UserInfoModel(
+UserInfoModel _$UserInfoModelFromJson(Map json) => UserInfoModel(
       userId: (json['userId'] as num).toInt(),
       name: json['name'] as String,
       age: (json['age'] as num).toInt(),
       avatar: json['avatar'] as String?,
       faculty: json['faculty'] as String?,
       appropriatenessPercent: json['appropriatenessPercent'] as num,
-      favoritesOther: (json['favoritesOther'] as List<dynamic>)
-          .map((e) => FavoriteModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      favoritesOverlap: (json['favoritesOverlap'] as List<dynamic>)
-          .map((e) => FavoriteModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      favoritesOther: (json['favoritesOther'] as List<dynamic>?)
+              ?.map((e) =>
+                  FavoriteModel.fromJson(Map<String, dynamic>.from(e as Map)))
+              .toList() ??
+          [],
+      favoritesOverlap: (json['favoritesOverlap'] as List<dynamic>?)
+              ?.map((e) =>
+                  FavoriteModel.fromJson(Map<String, dynamic>.from(e as Map)))
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$UserInfoModelToJson(UserInfoModel instance) =>
@@ -30,6 +33,7 @@ Map<String, dynamic> _$UserInfoModelToJson(UserInfoModel instance) =>
       'avatar': instance.avatar,
       'faculty': instance.faculty,
       'appropriatenessPercent': instance.appropriatenessPercent,
-      'favoritesOverlap': instance.favoritesOverlap,
-      'favoritesOther': instance.favoritesOther,
+      'favoritesOverlap':
+          instance.favoritesOverlap.map((e) => e.toJson()).toList(),
+      'favoritesOther': instance.favoritesOther.map((e) => e.toJson()).toList(),
     };

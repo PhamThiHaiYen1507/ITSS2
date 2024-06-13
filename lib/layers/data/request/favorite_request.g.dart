@@ -6,8 +6,7 @@ part of 'favorite_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FavoriteRequest _$FavoriteRequestFromJson(Map<String, dynamic> json) =>
-    FavoriteRequest(
+FavoriteRequest _$FavoriteRequestFromJson(Map json) => FavoriteRequest(
       userIp: json['userIp'] as String,
       favoriteIds: (json['favoriteIds'] as List<dynamic>)
           .map((e) => (e as num).toInt())

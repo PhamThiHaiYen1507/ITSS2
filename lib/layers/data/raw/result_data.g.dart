@@ -6,7 +6,7 @@ part of 'result_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ResultData _$ResultDataFromJson(Map<String, dynamic> json) => ResultData()
+ResultData _$ResultDataFromJson(Map json) => ResultData()
   ..result = json['result'] as bool?
   ..id = (json['id'] as num?)?.toInt();
 

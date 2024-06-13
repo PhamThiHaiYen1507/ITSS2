@@ -6,8 +6,7 @@ part of 'add_friend_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AddFriendRequest _$AddFriendRequestFromJson(Map<String, dynamic> json) =>
-    AddFriendRequest(
+AddFriendRequest _$AddFriendRequestFromJson(Map json) => AddFriendRequest(
       firstUserIp: json['firstUserIp'] as String,
       secondUserId: (json['secondUserId'] as num).toInt(),
     );

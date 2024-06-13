@@ -6,7 +6,7 @@ part 'user_info_data.g.dart';
 
 @JsonSerializable()
 class UserInfoData {
-  int? id;
+  int? userId;
 
   String? name;
 
@@ -30,7 +30,7 @@ class UserInfoData {
   Map<String, dynamic> toJson() => _$UserInfoDataToJson(this);
 
   UserInfoModel toUserInfoModel() => UserInfoModel(
-      userId: id ?? -1,
+      userId: userId ?? -1,
       name: name ?? '',
       age: age ?? 0,
       avatar: avatar,

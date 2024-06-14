@@ -7,7 +7,7 @@ part of 'user_info_data.dart';
 // **************************************************************************
 
 UserInfoData _$UserInfoDataFromJson(Map json) => UserInfoData()
-  ..userId = (json['userId'] as num?)?.toInt()
+  ..userId = (json['id'] as num?)?.toInt()
   ..name = json['name'] as String?
   ..age = (json['age'] as num?)?.toInt()
   ..avatar = json['avatar'] as String?
@@ -18,11 +18,12 @@ UserInfoData _$UserInfoDataFromJson(Map json) => UserInfoData()
       .toList()
   ..favoritesOther = (json['favoritesOther'] as List<dynamic>?)
       ?.map((e) => FavoriteData.fromJson(Map<String, dynamic>.from(e as Map)))
-      .toList();
+      .toList()
+  ..sent = json['sent'] as bool?;
 
 Map<String, dynamic> _$UserInfoDataToJson(UserInfoData instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
+      'id': instance.userId,
       'name': instance.name,
       'age': instance.age,
       'avatar': instance.avatar,
@@ -32,4 +33,5 @@ Map<String, dynamic> _$UserInfoDataToJson(UserInfoData instance) =>
           instance.favoritesOverlap?.map((e) => e.toJson()).toList(),
       'favoritesOther':
           instance.favoritesOther?.map((e) => e.toJson()).toList(),
+      'sent': instance.sent,
     };

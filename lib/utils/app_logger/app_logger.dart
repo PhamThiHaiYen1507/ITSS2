@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+// ignore: depend_on_referenced_packages
 import 'package:logger/logger.dart';
 import 'package:translate_app/utils.dart';
 import 'package:translate_app/utils/app_logger/custom_printer.dart';

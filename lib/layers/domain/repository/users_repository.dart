@@ -6,4 +6,8 @@ import 'package:translate_app/layers/domain/entities/user_info_model.dart';
 abstract class UsersRepository {
   Future<ApiResponseData<List<UserInfoModel>?>> getUsersInfo(String userIp);
   Future<ApiResponseData<ResultData>> addFriend(AddFriendRequest request);
+  Future<ApiResponseData<ResultData>> acceptFriendRequest(
+      AddFriendRequest request);
+  Future<ApiResponseData<List<UserInfoModel>?>> getFriendInvite(String userIp);
+  Future<ApiResponseData<List<UserInfoModel>?>> findAllFriends(String userIp);
 }

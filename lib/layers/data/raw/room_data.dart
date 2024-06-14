@@ -23,11 +23,11 @@ class RoomData {
       roomId: roomId ?? const Uuid().v4(),
       friendInfo: friendInfo?.toUserInfoModel() ??
           UserInfoModel(
-            userId: -1,
-            name: '',
-            age: 0,
-            appropriatenessPercent: 0,
-            favoritesOther: [],
-            favoritesOverlap: [],
-          ));
+              userId: -1,
+              name: '',
+              age: 0,
+              appropriatenessPercent: 0,
+              favoritesOther: [],
+              favoritesOverlap: [],
+              sent: false));
 }

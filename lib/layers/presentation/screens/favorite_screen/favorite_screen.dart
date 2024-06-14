@@ -71,6 +71,7 @@ class FavoriteScreen extends StatelessWidget {
                                             onTap: () =>
                                                 controller.onRemoveFavorite(e),
                                             child: FavoriteSelectItem(
+                                                isSlected: true,
                                                 favoriteModel: e)))
                                         .toList()))
                               ],

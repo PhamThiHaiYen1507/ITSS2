@@ -133,7 +133,7 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<List<UserInfoData>?> getAddFriend(String userIp) async {
+  Future<List<UserInfoData>?> getFriendInvite(String userIp) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'userIp': userIp};
     final _headers = <String, dynamic>{};
@@ -158,6 +158,63 @@ class _ApiClient implements ApiClient {
     var value = _result.data
         ?.map((dynamic i) => UserInfoData.fromJson(i as Map<String, dynamic>))
         .toList();
+    return value;
+  }
+
+  @override
+  Future<List<UserInfoData>?> findAllFriends(String userIp) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'userIp': userIp};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<UserInfoData>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/user/findFriends',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data
+        ?.map((dynamic i) => UserInfoData.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
+  Future<ResultData> acceptFriendRequest(AddFriendRequest request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ResultData>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/user/acceptFriendRequest',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ResultData.fromJson(_result.data!);
     return value;
   }
 

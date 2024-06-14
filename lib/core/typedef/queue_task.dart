@@ -1,5 +1,7 @@
 import 'dart:async';
+// ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
+// ignore: depend_on_referenced_packages
 import 'package:async/async.dart';
 
 class FutureTaskQueue<T> {
@@ -25,7 +27,8 @@ class FutureTaskQueue<T> {
       try {
         final result = await task.future();
         task.completer.complete(result);
-      } catch (e, stackTrace) {}
+        // ignore: empty_catches
+      } catch (e) {}
       _runningTask.remove(task);
       _runTask();
     }

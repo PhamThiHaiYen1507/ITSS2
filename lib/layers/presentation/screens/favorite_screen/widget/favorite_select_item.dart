@@ -21,7 +21,7 @@ class FavoriteSelectItem extends StatelessWidget {
             Container(
               height: 60,
               width: 60,
-              padding: const EdgeInsets.all(50),
+              padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                   boxShadow: const [
                     BoxShadow(

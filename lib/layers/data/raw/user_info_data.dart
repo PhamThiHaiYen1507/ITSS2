@@ -6,6 +6,7 @@ part 'user_info_data.g.dart';
 
 @JsonSerializable()
 class UserInfoData {
+  @JsonKey(name: 'id')
   int? userId;
 
   String? name;
@@ -21,6 +22,8 @@ class UserInfoData {
   List<FavoriteData>? favoritesOverlap;
 
   List<FavoriteData>? favoritesOther;
+
+  bool? sent;
 
   UserInfoData();
 
@@ -38,6 +41,7 @@ class UserInfoData {
       appropriatenessPercent: score ?? 0,
       favoritesOther:
           favoritesOther?.map((e) => e.toFavoriteModel()).toList() ?? [],
+      sent: sent ?? false,
       favoritesOverlap:
           favoritesOverlap?.map((e) => e.toFavoriteModel()).toList() ?? []);
 }

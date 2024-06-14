@@ -23,6 +23,7 @@ UserInfoModel _$UserInfoModelFromJson(Map json) => UserInfoModel(
                   FavoriteModel.fromJson(Map<String, dynamic>.from(e as Map)))
               .toList() ??
           [],
+      sent: json['sent'] as bool,
     );
 
 Map<String, dynamic> _$UserInfoModelToJson(UserInfoModel instance) =>
@@ -36,4 +37,5 @@ Map<String, dynamic> _$UserInfoModelToJson(UserInfoModel instance) =>
       'favoritesOverlap':
           instance.favoritesOverlap.map((e) => e.toJson()).toList(),
       'favoritesOther': instance.favoritesOther.map((e) => e.toJson()).toList(),
+      'sent': instance.sent,
     };

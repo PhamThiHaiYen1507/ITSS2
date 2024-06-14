@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert' as j;
 
+// ignore: camel_case_types, constant_identifier_names
 enum NOTIFICATION_TYPE { SUCCESS, ERROR }
 
 class Utils {
@@ -25,8 +26,6 @@ class Utils {
               color: Colors.white, fontSize: 15, fontWeight: FontWeight.w500),
         ));
   }
-
-  
 
   static bool validatePhoneNumber(String value) {
     final RegExp phoneReg =

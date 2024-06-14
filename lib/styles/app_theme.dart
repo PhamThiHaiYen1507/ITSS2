@@ -6,10 +6,12 @@ class AppThemes {
   static const Color background = Color(0xffF4F4F4);
 
   static final ThemeData lightTheme = ThemeData(
+    fontFamily: 'Quicksand',
     appBarTheme: const AppBarTheme(
       color: primaryColor,
       foregroundColor: Colors.white,
       titleTextStyle: TextStyle(
+        fontFamily: 'Quicksand',
         fontSize: 20,
         fontWeight: FontWeight.w600,
       ),
@@ -21,8 +23,8 @@ class AppThemes {
     colorScheme: ColorScheme.fromSwatch().copyWith(
       primary: primaryColor,
       onPrimary: primaryColor,
-      surface: Colors.white,
-      onSurface: Colors.white,
+      surface: Colors.black,
+      onSurface: Colors.black,
     ),
   );
 }

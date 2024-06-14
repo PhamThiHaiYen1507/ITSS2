@@ -9,6 +9,7 @@ class ChatScreen extends StatefulWidget {
       {super.key, required this.currentUserId, required this.chatWithUserId});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ChatScreenState createState() => _ChatScreenState();
 }
 

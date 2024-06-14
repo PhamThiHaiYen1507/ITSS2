@@ -25,7 +25,13 @@ abstract class ApiClient {
   Future<ResultData> addPriend(@Body() AddFriendRequest request);
 
   @GET('/user/findAllAddFriendRequest')
-  Future<List<UserInfoData>?> getAddFriend(@Query('userIp') String userIp);
+  Future<List<UserInfoData>?> getFriendInvite(@Query('userIp') String userIp);
+
+  @GET('/user/findFriends')
+  Future<List<UserInfoData>?> findAllFriends(@Query('userIp') String userIp);
+
+  @POST('/user/acceptFriendRequest')
+  Future<ResultData> acceptFriendRequest(@Body() AddFriendRequest request);
 }
 
 class ApiClientImpl implements ApiClient {
@@ -62,6 +68,14 @@ class ApiClientImpl implements ApiClient {
       _client.addPriend(request);
 
   @override
-  Future<List<UserInfoData>?> getAddFriend(String userIp) =>
-      _client.getAddFriend(userIp);
+  Future<List<UserInfoData>?> findAllFriends(String userIp) =>
+      _client.findAllFriends(userIp);
+
+  @override
+  Future<ResultData> acceptFriendRequest(AddFriendRequest request) =>
+      _client.acceptFriendRequest(request);
+
+  @override
+  Future<List<UserInfoData>?> getFriendInvite(String userIp) =>
+      _client.getFriendInvite(userIp);
 }

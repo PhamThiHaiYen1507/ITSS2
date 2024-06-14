@@ -34,4 +34,40 @@ class UserRepositoryImpl implements UsersRepository {
       return Left(ApiException());
     }
   }
+
+  @override
+  Future<ApiResponseData<ResultData>> acceptFriendRequest(
+      AddFriendRequest request) async {
+    try {
+      final res = await _client.acceptFriendRequest(request);
+      return Right(res);
+    } catch (e, stackTrace) {
+      logE(e, stackTrace);
+      return Left(ApiException());
+    }
+  }
+
+  @override
+  Future<ApiResponseData<List<UserInfoModel>?>> getFriendInvite(
+      String userIp) async {
+    try {
+      final res = await _client.getFriendInvite(userIp);
+
+      return Right(res?.map((e) => e.toUserInfoModel()).toList() ?? []);
+    } on Exception catch (_) {
+      return Left(ApiException());
+    }
+  }
+
+  @override
+  Future<ApiResponseData<List<UserInfoModel>>> findAllFriends(
+      String userIp) async {
+    try {
+      final res = await _client.findAllFriends(userIp);
+
+      return Right(res?.map((e) => e.toUserInfoModel()).toList() ?? []);
+    } on Exception catch (_) {
+      return Left(ApiException());
+    }
+  }
 }

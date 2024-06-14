@@ -24,6 +24,8 @@ class UserInfoModel {
   @JsonKey(defaultValue: [])
   final List<FavoriteModel> favoritesOther;
 
+  bool sent;
+
   UserInfoModel(
       {required this.userId,
       required this.name,
@@ -32,7 +34,8 @@ class UserInfoModel {
       this.faculty,
       required this.appropriatenessPercent,
       required this.favoritesOther,
-      required this.favoritesOverlap});
+      required this.favoritesOverlap,
+      required this.sent});
 
   factory UserInfoModel.fromJson(Map<String, dynamic> json) =>
       _$UserInfoModelFromJson(json);

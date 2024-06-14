@@ -6,7 +6,7 @@ part of 'favorite_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FavoriteData _$FavoriteDataFromJson(Map<String, dynamic> json) => FavoriteData(
+FavoriteData _$FavoriteDataFromJson(Map json) => FavoriteData(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       url: json['url'] as String?,

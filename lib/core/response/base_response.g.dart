@@ -6,7 +6,7 @@ part of 'base_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BaseResponse _$BaseResponseFromJson(Map<String, dynamic> json) => BaseResponse()
+BaseResponse _$BaseResponseFromJson(Map json) => BaseResponse()
   ..data = json['data']
   ..statusCode = (json['statusCode'] as num?)?.toInt()
   ..message = json['message'] as String?;

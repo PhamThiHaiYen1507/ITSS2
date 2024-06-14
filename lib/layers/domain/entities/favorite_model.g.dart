@@ -6,8 +6,7 @@ part of 'favorite_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FavoriteModel _$FavoriteModelFromJson(Map<String, dynamic> json) =>
-    FavoriteModel(
+FavoriteModel _$FavoriteModelFromJson(Map json) => FavoriteModel(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       url: json['url'] as String,

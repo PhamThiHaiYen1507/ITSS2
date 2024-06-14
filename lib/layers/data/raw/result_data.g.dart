@@ -6,10 +6,12 @@ part of 'result_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ResultData _$ResultDataFromJson(Map<String, dynamic> json) =>
-    ResultData()..result = json['result'] as bool?;
+ResultData _$ResultDataFromJson(Map json) => ResultData()
+  ..result = json['result'] as bool?
+  ..id = (json['id'] as num?)?.toInt();
 
 Map<String, dynamic> _$ResultDataToJson(ResultData instance) =>
     <String, dynamic>{
       'result': instance.result,
+      'id': instance.id,
     };

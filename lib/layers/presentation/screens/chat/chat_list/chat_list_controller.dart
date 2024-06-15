@@ -1,26 +1,23 @@
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
-import 'package:translate_app/layers/data/raw/room_data.dart';
+import 'package:translate_app/layers/data/repository/chat_repository_impl.dart';
 import 'package:translate_app/layers/data/repository/user_repository_impl.dart';
 import 'package:translate_app/layers/domain/entities/room_model.dart';
 import 'package:translate_app/layers/domain/entities/user_info_model.dart';
+import 'package:translate_app/layers/domain/repository/chat_repository.dart';
 import 'package:translate_app/layers/domain/repository/users_repository.dart';
 import 'package:translate_app/services/global_service.dart';
 
 class ChatListController extends GetxController {
   final UsersRepository _usersRepository = UserRepositoryImpl();
 
+  final ChatRepository _chatRepository = ChatRepositoryImpl();
+
   final Rx<List<UserInfoModel>> _users = Rx([]);
 
   final GlobalService g = Get.find();
 
   final Rx<List<RoomModel>> _rooms = Rx([]);
-
-  late DatabaseReference roomListRef =
-      FirebaseDatabase.instance.ref('${g.userIdFromServer}').child('rooms');
-
-  late DatabaseReference newRoomRef = roomListRef.push();
 
   @override
   void onInit() {
@@ -29,16 +26,27 @@ class ChatListController extends GetxController {
     super.onInit();
   }
 
-  void _getRooms() {
-    roomListRef.get().then(
-      (value) {
-        if (value.value is List) {
-          _rooms.value = (value.value as List)
-              .map((e) => RoomData.fromJson(Map.from(e)).toRoomModel())
-              .toList();
-        }
-      },
-    );
+  Future<void> _getRooms() async {
+    _rooms.value =
+        (await _chatRepository.getRooms(userId: g.userIdFromServer)).right;
+
+    // _chatRepository.createRoom(
+    //     myInfo: UserInfoData(
+    //       userId: 0,
+    //       name: 'Yen test',
+    //       age: 18,
+    //       favoritesOther: [],
+    //       favoritesOverlap: [],
+    //       sent: true,
+    //     ).toUserInfoModel(),
+    //     friendInfo: UserInfoData(
+    //       userId: 1,
+    //       name: 'Yen test 2',
+    //       age: 18,
+    //       favoritesOther: [],
+    //       favoritesOverlap: [],
+    //       sent: true,
+    //     ).toUserInfoModel());
   }
 
   Future<void> _findAllFriends() async {

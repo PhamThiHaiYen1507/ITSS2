@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:translate_app/layers/presentation/screens/chat/chat_detail_screen.dart';
 
 import 'chat_list_controller.dart';
 
@@ -82,9 +83,16 @@ class ChatListScreen extends StatelessWidget {
                               topRight: Radius.circular(32))),
                       child: ListView.builder(
                         itemCount: c.rooms.length,
-                        itemBuilder: (context, i) => Text(
-                          c.rooms[i].friendInfo.name,
-                          style: const TextStyle(color: Colors.black),
+                        itemBuilder: (context, i) => InkWell(
+                          onTap: () =>
+                              Get.to(() => ChatDetailScreen(room: c.rooms[i])),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              c.rooms[i].friendInfo.name,
+                              style: const TextStyle(color: Colors.black),
+                            ),
+                          ),
                         ),
                       ),
                     ),

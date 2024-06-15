@@ -1,89 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
+import 'package:translate_app/layers/domain/entities/room_model.dart';
+import 'package:translate_app/layers/presentation/screens/chat/chat_detail_controller.dart';
 
-class ChatScreen extends StatefulWidget {
-  final int currentUserId;
-  final int chatWithUserId;
-
-  const ChatScreen(
-      {super.key, required this.currentUserId, required this.chatWithUserId});
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _ChatScreenState createState() => _ChatScreenState();
-}
-
-class _ChatScreenState extends State<ChatScreen> {
-  final TextEditingController messageController = TextEditingController();
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-  void sendMessage() async {
-    if (messageController.text.isNotEmpty) {
-      await _firestore.collection('chats').add({
-        'text': messageController.text,
-        'senderId': widget.currentUserId,
-        'receiverId': widget.chatWithUserId,
-        'timestamp': FieldValue.serverTimestamp(),
-      });
-      messageController.clear();
-    }
-  }
+class ChatDetailScreen extends StatelessWidget {
+  final RoomModel room;
+  const ChatDetailScreen({super.key, required this.room});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Chat with ${widget.chatWithUserId}'),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: StreamBuilder(
-              stream: _firestore
-                  .collection('chats')
-                  .where('senderId',
-                      whereIn: [widget.currentUserId, widget.chatWithUserId])
-                  .where('receiverId',
-                      whereIn: [widget.currentUserId, widget.chatWithUserId])
-                  .orderBy('timestamp')
-                  .snapshots(),
-              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (!snapshot.hasData) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-                return ListView.builder(
-                  itemCount: snapshot.data!.docs.length,
-                  itemBuilder: (context, index) {
-                    DocumentSnapshot chat = snapshot.data!.docs[index];
-                    return ListTile(
-                      title: Text(chat['text']),
-                      subtitle: Text(chat['senderId']),
-                    );
+    return GetBuilder<ChatDetailController>(
+      init: ChatDetailController(room.roomId),
+      builder: (c) => Scaffold(
+        resizeToAvoidBottomInset: true,
+        appBar: AppBar(
+          title: Text(room.friendInfo.name),
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: Obx(
+                () => ListView.builder(
+                  reverse: true,
+                  itemCount: c.messages.length,
+                  itemBuilder: (context, i) {
+                    final message = c.messages[i];
+                    return Text(message.message);
                   },
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: messageController,
-                    decoration: const InputDecoration(
-                      labelText: 'Enter your message...',
-                    ),
-                  ),
                 ),
-                IconButton(
-                  icon: const Icon(Icons.send),
-                  onPressed: sendMessage,
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
+            TextField(
+              controller: c.message,
+              decoration: InputDecoration(
+                suffixIcon: IconButton(
+                    onPressed: c.sendMessage, icon: const Icon(Icons.send)),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

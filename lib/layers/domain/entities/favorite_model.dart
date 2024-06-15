@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:translate_app/layers/data/raw/favorite_data.dart';
 
 part 'favorite_model.g.dart';
 
@@ -13,4 +14,6 @@ class FavoriteModel {
       _$FavoriteModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$FavoriteModelToJson(this);
+
+  FavoriteData toFavoriteData() => FavoriteData.fromJson(toJson());
 }

@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:translate_app/layers/data/raw/user_info_data.dart';
 
 import 'favorite_model.dart';
 
@@ -40,5 +41,17 @@ class UserInfoModel {
   factory UserInfoModel.fromJson(Map<String, dynamic> json) =>
       _$UserInfoModelFromJson(json);
 
+  factory UserInfoModel.empty() => UserInfoModel(
+        userId: -1,
+        name: '',
+        age: 0,
+        appropriatenessPercent: 0,
+        favoritesOther: [],
+        favoritesOverlap: [],
+        sent: false,
+      );
+
   Map<String, dynamic> toJson() => _$UserInfoModelToJson(this);
+
+  UserInfoData toUserInfoData() => UserInfoData.fromJson(toJson());
 }

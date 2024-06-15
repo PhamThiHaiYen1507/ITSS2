@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-
-import 'user_info_model.dart';
+import 'package:translate_app/layers/domain/entities/user_info_model.dart';
 
 part 'room_model.g.dart';
 
@@ -10,7 +9,10 @@ class RoomModel {
 
   final UserInfoModel friendInfo;
 
-  RoomModel({required this.roomId, required this.friendInfo});
+  final List<int> userIds;
+
+  RoomModel(
+      {required this.roomId, required this.friendInfo, required this.userIds});
 
   factory RoomModel.fromJson(Map<String, dynamic> json) =>
       _$RoomModelFromJson(json);

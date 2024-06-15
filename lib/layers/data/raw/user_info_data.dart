@@ -6,7 +6,6 @@ part 'user_info_data.g.dart';
 
 @JsonSerializable()
 class UserInfoData {
-  @JsonKey(name: 'id')
   int? userId;
 
   String? name;
@@ -25,7 +24,17 @@ class UserInfoData {
 
   bool? sent;
 
-  UserInfoData();
+  UserInfoData({
+    this.age,
+    this.avatar,
+    this.faculty,
+    this.favoritesOther,
+    this.favoritesOverlap,
+    this.name,
+    this.score,
+    this.sent,
+    this.userId,
+  });
 
   factory UserInfoData.fromJson(Map<String, dynamic> json) =>
       _$UserInfoDataFromJson(json);

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:translate_app/layers/domain/entities/room_model.dart';
 import 'package:translate_app/layers/presentation/screens/chat/chat_detail_screen.dart';
 
 import 'chat_list_controller.dart';
@@ -75,7 +76,7 @@ class ChatListScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: Container(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(8.0),
                       decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
@@ -88,9 +89,24 @@ class ChatListScreen extends StatelessWidget {
                               Get.to(() => ChatDetailScreen(room: c.rooms[i])),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              c.rooms[i].friendInfo.name,
-                              style: const TextStyle(color: Colors.black),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(Icons.account_circle, size: 40),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      c.rooms[i].friendInfo.name,
+                                      style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ],
+                                ),
+                                const Divider(color: Colors.black45)
+                              ],
                             ),
                           ),
                         ),

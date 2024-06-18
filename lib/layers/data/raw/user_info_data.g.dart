@@ -21,12 +21,12 @@ UserInfoData _$UserInfoDataFromJson(Map json) => UserInfoData(
       name: json['name'] as String?,
       score: json['score'] as num?,
       sent: json['sent'] as bool?,
-      userId: (json['userId'] as num?)?.toInt(),
+      userId: (json['id'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$UserInfoDataToJson(UserInfoData instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
+      'id': instance.userId,
       'name': instance.name,
       'age': instance.age,
       'avatar': instance.avatar,

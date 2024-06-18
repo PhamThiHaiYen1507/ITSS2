@@ -45,7 +45,7 @@ class ChatRepositoryImpl implements ChatRepository {
   }
 
   @override
-  Future<ApiResponseData<bool>> createRoom(
+  Future<ApiResponseData<RoomModel>> createRoom(
       {required UserInfoModel myInfo,
       required UserInfoModel friendInfo}) async {
     try {
@@ -58,7 +58,10 @@ class ChatRepositoryImpl implements ChatRepository {
 
       await roomListRef.push().set(room.toJson());
 
-      return const Right(true);
+      return Right(RoomModel(
+          roomId: room.roomId ?? const Uuid().v4(),
+          friendInfo: friendInfo,
+          userIds: [myInfo.userId, friendInfo.userId]));
     } catch (e) {
       return Left(ApiException());
     }

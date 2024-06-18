@@ -5,6 +5,7 @@ import 'package:translate_app/layers/domain/entities/user_info_model.dart';
 import 'package:translate_app/layers/presentation/screens/favorite_screen/widget/favorite_select_item.dart';
 import 'package:translate_app/layers/presentation/screens/favorite_screen/widget/favorite_similar_item.dart';
 import 'package:translate_app/layers/presentation/screens/friend_invite/friend_invite_controller.dart';
+import 'package:translate_app/services/global_service.dart';
 
 class FriendInviteScreen extends StatelessWidget {
   const FriendInviteScreen({super.key});
@@ -23,68 +24,89 @@ class FriendInviteScreen extends StatelessWidget {
             body: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Obx(
-                () => ListView.builder(
-                  itemCount: c.users.length,
-                  itemBuilder: (context, i) => Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Column(
+                () => Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        GestureDetector(
-                          onTap: () =>
-                              Get.bottomSheet(InforUserInvite(c.users[i])),
-                          child: Row(
+                        const Text('Tài khoản của bạn'),
+                        Text(GlobalService.instance.userIpDevice,
+                            style: const TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500))
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: c.users.length,
+                        itemBuilder: (context, i) => Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: Column(
                             children: [
-                              ClipRect(
-                                  clipBehavior: Clip.none,
-                                  child: Container(
-                                    height: 60,
-                                    width: 60,
-                                    padding: const EdgeInsets.all(12),
-                                    decoration: BoxDecoration(
-                                        color: Colors.grey.withOpacity(0.1),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    child: CachedNetworkImage(
-                                      imageUrl: c.users[i].avatar ?? '',
-                                      fit: BoxFit.cover,
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(Icons.account_circle),
+                              GestureDetector(
+                                onTap: () => Get.bottomSheet(
+                                    InforUserInvite(c.users[i])),
+                                child: Row(
+                                  children: [
+                                    ClipRect(
+                                        clipBehavior: Clip.none,
+                                        child: Container(
+                                          height: 60,
+                                          width: 60,
+                                          padding: const EdgeInsets.all(12),
+                                          decoration: BoxDecoration(
+                                              color:
+                                                  Colors.grey.withOpacity(0.1),
+                                              borderRadius:
+                                                  BorderRadius.circular(12)),
+                                          child: CachedNetworkImage(
+                                            imageUrl: c.users[i].avatar ?? '',
+                                            fit: BoxFit.cover,
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    const Icon(
+                                                        Icons.account_circle),
+                                          ),
+                                        )),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      c.users[i].name,
+                                      style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700),
                                     ),
-                                  )),
-                              const SizedBox(width: 8),
-                              Text(
-                                c.users[i].name,
-                                style: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700),
+                                    const Spacer(),
+                                    InkWell(
+                                      onTap: () => c.acceptInvite(c.users[i]),
+                                      child: Container(
+                                          alignment: Alignment.center,
+                                          width: 100,
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 8),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                              gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color(0xffB569AC),
+                                                    Color(0xff4B164C)
+                                                  ])),
+                                          child: const Text('Chấp nhận',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 14))),
+                                    )
+                                  ],
+                                ),
                               ),
-                              const Spacer(),
-                              InkWell(
-                                onTap: () => c.acceptInvite(c.users[i]),
-                                child: Container(
-                                    alignment: Alignment.center,
-                                    width: 100,
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 8),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(16),
-                                        gradient: const LinearGradient(colors: [
-                                          Color(0xffB569AC),
-                                          Color(0xff4B164C)
-                                        ])),
-                                    child: const Text('Chấp nhận',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14))),
-                              )
+                              Divider(color: Colors.purple.shade100)
                             ],
                           ),
                         ),
-                        Divider(color: Colors.purple.shade100)
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),

@@ -49,7 +49,7 @@ class ApiClientImpl implements ApiClient {
     _dio = Dio(BaseOptions(contentType: Headers.jsonContentType));
 
     _client =
-        ApiClient(_dio, baseUrl: Uri.https(AppConfig.info.baseUrl).toString());
+        ApiClient(_dio, baseUrl: Uri.http(AppConfig.info.baseUrl).toString());
   }
 
   @override

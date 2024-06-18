@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:translate_app/layers/data/raw/user_info_data.dart';
+import 'package:translate_app/layers/domain/entities/room_model.dart';
 
 part 'room_data.g.dart';
 

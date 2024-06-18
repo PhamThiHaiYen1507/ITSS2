@@ -3,9 +3,9 @@ import 'package:translate_app/app_config/app_config.dart';
 void setAppDevelopment() {
   AppConfig(
     env: ENV.DEV,
-    baseUrl: '6fd7-14-231-11-51.ngrok-free.app',
+    baseUrl: '18.139.76.230:8087',
     baseUrlMap: 'maps.vietmap.vn',
-    secure: true,
+    secure: false,
     fetchCount: 20,
   );
 }
@@ -13,9 +13,9 @@ void setAppDevelopment() {
 void setAppProduction() {
   AppConfig(
     env: ENV.PROD,
-    baseUrl: '6fd7-14-231-11-51.ngrok-free.app',
+    baseUrl: '18.139.76.230:8087',
     baseUrlMap: 'maps.vietmap.vn',
-    secure: true,
+    secure: false,
     fetchCount: 20,
   );
 }

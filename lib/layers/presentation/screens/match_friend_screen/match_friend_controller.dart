@@ -4,6 +4,7 @@ import 'package:translate_app/layers/data/repository/user_repository_impl.dart';
 import 'package:translate_app/layers/data/request/add_friend_request.dart';
 import 'package:translate_app/layers/domain/entities/user_info_model.dart';
 import 'package:translate_app/layers/domain/repository/users_repository.dart';
+import 'package:translate_app/utils/app_logger/app_logger.dart';
 
 class MatchFriendController extends GetxController {
   final UsersRepository _usersRepository = UserRepositoryImpl();

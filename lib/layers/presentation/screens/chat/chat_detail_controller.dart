@@ -50,14 +50,13 @@ class ChatDetailController extends GetxController {
       message: MessageModel.init(
         message: message.text,
         user: UserInfoModel(
-          userId: 0,
-          name: 'Yeens',
-          age: 19,
-          appropriatenessPercent: 83,
-          favoritesOther: [],
-          favoritesOverlap: [],
-          sent: true,
-        ),
+            userId: GlobalService.instance.userIdFromServer,
+            name: '',
+            age: 0,
+            appropriatenessPercent: 0,
+            favoritesOther: [],
+            favoritesOverlap: [],
+            sent: true),
       ),
     );
 

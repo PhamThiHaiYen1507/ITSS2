@@ -1,11 +1,13 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get/get.dart';
+import 'package:translate_app/layers/data/raw/user_info_data.dart';
 import 'package:translate_app/layers/data/repository/chat_repository_impl.dart';
 import 'package:translate_app/layers/data/repository/user_repository_impl.dart';
 import 'package:translate_app/layers/domain/entities/room_model.dart';
 import 'package:translate_app/layers/domain/entities/user_info_model.dart';
 import 'package:translate_app/layers/domain/repository/chat_repository.dart';
 import 'package:translate_app/layers/domain/repository/users_repository.dart';
+import 'package:translate_app/layers/presentation/screens/chat/chat_detail_screen.dart';
 import 'package:translate_app/services/global_service.dart';
 
 class ChatListController extends GetxController {
@@ -29,24 +31,6 @@ class ChatListController extends GetxController {
   Future<void> _getRooms() async {
     _rooms.value =
         (await _chatRepository.getRooms(userId: g.userIdFromServer)).right;
-
-    // _chatRepository.createRoom(
-    //     myInfo: UserInfoData(
-    //       userId: 0,
-    //       name: 'Yen test',
-    //       age: 18,
-    //       favoritesOther: [],
-    //       favoritesOverlap: [],
-    //       sent: true,
-    //     ).toUserInfoModel(),
-    //     friendInfo: UserInfoData(
-    //       userId: 1,
-    //       name: 'Yen test 2',
-    //       age: 18,
-    //       favoritesOther: [],
-    //       favoritesOverlap: [],
-    //       sent: true,
-    //     ).toUserInfoModel());
   }
 
   Future<void> _findAllFriends() async {
@@ -57,6 +41,8 @@ class ChatListController extends GetxController {
 
     res.map(_users);
   }
+
+
 
   List<RoomModel> get rooms => _rooms.value;
 
